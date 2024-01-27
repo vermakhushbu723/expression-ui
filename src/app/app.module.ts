@@ -1,18 +1,24 @@
+// app.module.ts
+
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
-import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ExpressionComponent } from './expression/expression.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ExpressionComponent,
+    // ... other components
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    FormsModule,
+    // ... other modules
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

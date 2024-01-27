@@ -1,0 +1,59 @@
+
+
+<form class="container mt-5">
+    <div class="form-group">
+      <label for="connectorType">Connector Type:</label>
+      <select class="form-control" id="connectorType" [(ngModel)]="connectorType" name="connectorType">
+        <option value="and">AND</option>
+        <option value="or">OR</option>
+      </select>
+    </div>
+  
+    <div *ngFor="let expression of expressions; let i = index" class="expression-container border p-3 mb-3">
+      <div class="form-row">
+        <div class="col">
+          <label for="ruleType">Rule Type:</label>
+          <select class="form-control" id="ruleType" [(ngModel)]="expression.ruleType" name="ruleType">
+            <option value="age">Age</option>
+            <option value="creditScore">Credit Score</option>
+            <option value="accountBalance">Account Balance</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="operator">Operator:</label>
+          <select class="form-control" id="operator" [(ngModel)]="expression.operator" name="operator">
+            <option value=">">></option>
+            <option value="<"><</option>
+            <option value=">=">>=</option>
+            <option value="<="><=</option>
+            <option value="=">=</option>
+          </select>
+        </div>
+        <div class="col">
+          <label for="value">Value:</label>
+          <input type="text" class="form-control" id="value" [(ngModel)]="expression.value" name="value">
+        </div>
+        <div class="col">
+          <label for="score">Score:</label>
+          <input type="text" class="form-control" id="score" [(ngModel)]="expression.score" name="score">
+        </div>
+      </div>
+  
+      <!-- Add Update, Delete, and Read buttons -->
+      <div class="text-right mt-2">
+        <button type="button" class="btn btn-success" (click)="updateExpression(i)">Update</button>
+        <button type="button" class="btn btn-danger" (click)="removeExpression(i)">Delete</button>
+        <button type="button" class="btn btn-info" (click)="readExpression(expression)">Read</button>
+      </div>
+    </div>
+  
+    <button type="button" class="btn btn-success" (click)="addExpression()">Add Expression</button>
+    <button type="button" class="btn btn-danger" (click)="calculateAndSubmit()">Calculate & Submit</button>
+    <button type="button" class="btn btn-info" (click)="loadExpressionsFromLocalStorage()">Load from LocalStorage</button>
+  
+    <div *ngIf="result">
+      <h4>Result:</h4>
+      <pre>{{ result | json }}</pre>
+    </div>
+  </form>
+  
